@@ -3,9 +3,13 @@ package com.yaudong.assignment.bookstoreservice.controller;
 import com.yaudong.assignment.bookstoreservice.model.Book;
 import com.yaudong.assignment.bookstoreservice.model.BookQuantityView;
 import com.yaudong.assignment.bookstoreservice.service.BookService;
+import com.yaudong.assignment.bookstoreservice.utils.reportgenerator.CsvReportGenerator;
+import com.yaudong.assignment.bookstoreservice.utils.reportgenerator.XmlReportGenerator;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -14,10 +18,11 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    @GetMapping("/books")
-    public List<Book> getBooks() {
-        return bookService.getBooks();
-    }
+    @Autowired
+    private CsvReportGenerator csvGenerator;
+
+    @Autowired
+    private XmlReportGenerator xmlGenerator;
 
     // TODO: Verify the price is a valid price
     @PostMapping("/books")
@@ -38,5 +43,34 @@ public class BookController {
     @PostMapping("/books/quantity")
     public void updateBooksQuantity(@RequestBody Map<Long, Integer> bookQuantities) {
         bookService.updateQuantity(bookQuantities);
+    }
+
+    @GetMapping("/books")
+    public List<Book> getBooks() {
+        return bookService.getBooks();
+    }
+
+    @GetMapping("/books/report/csv")
+    public void exportInventoryCsvReport(HttpServletResponse response) {
+        try {
+            response.setContentType("text/csv");
+            response.addHeader("Content-Disposition", "attachment; filename=\"inventory_report.csv\"");
+            csvGenerator.generateInventoryReport(bookService.getBooks(), response.getWriter());
+        } catch (IOException e) {
+            // TODO: Send response with correct error code and do logging
+            e.printStackTrace();
+        }
+    }
+
+    @GetMapping("/books/report/xml")
+    public void exportInventoryXmlReport(HttpServletResponse response) {
+        try {
+            response.setContentType("text/xml");
+            response.addHeader("Content-Disposition", "attachment; filename=\"inventory_report.xml\"");
+            xmlGenerator.generateInventoryReport(bookService.getBooks(), response.getWriter());
+        } catch (IOException e) {
+            // TODO: Send response with correct error code and do logging
+            e.printStackTrace();
+        }
     }
 }
