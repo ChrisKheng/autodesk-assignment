@@ -28,8 +28,6 @@ public class EmployeeService implements UserDetailsService {
                 .stream()
                 .map((role) -> new SimpleGrantedAuthority(role.getName().toString())).collect(Collectors.toSet());
 
-        authorities.forEach(System.out::println);
-
         return new org.springframework.security.core.userdetails.User(user.getEmail(),
                 user.getPassword(),
                 authorities);

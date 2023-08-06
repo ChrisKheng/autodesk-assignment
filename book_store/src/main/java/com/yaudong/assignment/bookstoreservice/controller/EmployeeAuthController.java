@@ -59,7 +59,7 @@ public class EmployeeAuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerEmployee(@RequestBody EmployeeSignUpDto signUpDto) {
+    public ResponseEntity<String> registerEmployee(@RequestBody EmployeeSignUpDto signUpDto) {
         if (employeeRepository.existsByEmail(signUpDto.getEmail())) {
             return new ResponseEntity<>("Email is already taken!", HttpStatus.BAD_REQUEST);
         }

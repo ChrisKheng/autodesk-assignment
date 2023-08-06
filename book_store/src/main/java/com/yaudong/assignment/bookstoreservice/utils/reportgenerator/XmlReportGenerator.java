@@ -11,12 +11,8 @@ import java.util.List;
 @Component
 public class XmlReportGenerator extends InventoryReportGenerator {
     @Override
-    protected void genReport(List<Book> books, Writer writer) {
-        try {
-            XmlMapper mapper = new XmlMapper();
-            writer.write(mapper.writer().withRootName("Books").writeValueAsString(books));
-        } catch (IOException e){
-            e.printStackTrace();
-        }
+    protected void genReport(List<Book> books, Writer writer) throws IOException {
+        XmlMapper mapper = new XmlMapper();
+        writer.write(mapper.writer().withRootName("Books").writeValueAsString(books));
     }
 }

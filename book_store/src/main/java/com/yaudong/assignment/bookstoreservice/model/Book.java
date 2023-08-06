@@ -5,15 +5,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.*;
 
 import java.math.BigDecimal;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
-@ToString
 public class Book {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -22,7 +21,11 @@ public class Book {
     private String publisher;
     private String author;
     private String isbn;
+
+    @PositiveOrZero
     private BigDecimal price;
+
+    @PositiveOrZero
     private int quantity;
 
     public Book(String title, String publisher, String author, String isbn, BigDecimal price, int quantity) {

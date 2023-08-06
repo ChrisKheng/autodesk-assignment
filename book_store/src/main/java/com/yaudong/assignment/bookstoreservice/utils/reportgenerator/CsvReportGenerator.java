@@ -12,22 +12,19 @@ import java.util.List;
 @Component
 public class CsvReportGenerator extends InventoryReportGenerator {
     @Override
-    protected void genReport(List<Book> books, Writer writer) {
-        try {
-            CSVPrinter printer = new CSVPrinter(writer, CSVFormat.DEFAULT);
-            for (Book book: books) {
-                printer.printRecord(
-                        book.getBookId(),
-                        book.getTitle(),
-                        book.getPublisher(),
-                        book.getAuthor(),
-                        book.getIsbn(),
-                        book.getPrice(),
-                        book.getQuantity()
-                );
-            }
-        } catch (IOException e){
-            e.printStackTrace();
+    protected void genReport(List<Book> books, Writer writer) throws IOException {
+        CSVPrinter printer = new CSVPrinter(writer, CSVFormat.DEFAULT);
+        for (Book book: books) {
+            printer.printRecord(
+                    book.getBookId(),
+                    book.getTitle(),
+                    book.getPublisher(),
+                    book.getAuthor(),
+                    book.getIsbn(),
+                    book.getPrice(),
+                    book.getQuantity()
+            );
         }
+
     }
 }

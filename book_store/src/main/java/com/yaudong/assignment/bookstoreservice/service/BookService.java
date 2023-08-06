@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -18,6 +19,12 @@ import java.util.stream.Collectors;
 public class BookService {
     @Autowired
     private BookRepository bookRepository;
+
+    public List<Book> getAllBooks() {
+        List<Book> result = new ArrayList<>();
+        bookRepository.findAll().forEach(result::add);
+        return result;
+    }
 
     public List<Book> getBooksByCriteria(BookListFilterCriteria criteria) {
         Specification spec = Specification
