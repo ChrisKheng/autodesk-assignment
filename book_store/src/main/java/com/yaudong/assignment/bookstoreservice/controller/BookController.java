@@ -1,7 +1,7 @@
 package com.yaudong.assignment.bookstoreservice.controller;
 
 import com.yaudong.assignment.bookstoreservice.model.Book;
-import com.yaudong.assignment.bookstoreservice.model.BookQuantityView;
+import com.yaudong.assignment.bookstoreservice.dto.book.BookQuantityView;
 import com.yaudong.assignment.bookstoreservice.service.BookService;
 import com.yaudong.assignment.bookstoreservice.utils.reportgenerator.CsvReportGenerator;
 import com.yaudong.assignment.bookstoreservice.utils.reportgenerator.XmlReportGenerator;
@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+@RequestMapping("/books")
 @RestController
 public class BookController {
     @Autowired
@@ -25,32 +26,32 @@ public class BookController {
     private XmlReportGenerator xmlGenerator;
 
     // TODO: Verify the price is a valid price
-    @PostMapping("/books")
+    @PostMapping("")
     public void addBooks(@RequestBody List<Book> books) {
         bookService.addBooks(books);
     }
 
-    @DeleteMapping("/books")
+    @DeleteMapping("")
     public void deleteBooks(@RequestParam(value = "id", defaultValue = "") List<Long> ids) {
         bookService.deleteBooks(ids);
     }
 
-    @GetMapping("/books/quantity")
+    @GetMapping("/quantity")
     public Map<Long, BookQuantityView> getBooksQuantity(@RequestParam(value = "id", defaultValue = "") List<Long> ids) {
         return bookService.retrieveQuantity(ids);
     }
 
-    @PostMapping("/books/quantity")
+    @PostMapping("/quantity")
     public void updateBooksQuantity(@RequestBody Map<Long, Integer> bookQuantities) {
         bookService.updateQuantity(bookQuantities);
     }
 
-    @GetMapping("/books")
+    @GetMapping("/")
     public List<Book> getBooks() {
         return bookService.getBooks();
     }
 
-    @GetMapping("/books/report/csv")
+    @GetMapping("/report/csv")
     public void exportInventoryCsvReport(HttpServletResponse response) {
         try {
             response.setContentType("text/csv");
@@ -62,7 +63,7 @@ public class BookController {
         }
     }
 
-    @GetMapping("/books/report/xml")
+    @GetMapping("/report/xml")
     public void exportInventoryXmlReport(HttpServletResponse response) {
         try {
             response.setContentType("text/xml");

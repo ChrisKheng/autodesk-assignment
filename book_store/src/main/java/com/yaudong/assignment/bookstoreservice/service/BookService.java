@@ -1,9 +1,8 @@
 package com.yaudong.assignment.bookstoreservice.service;
 
 import com.yaudong.assignment.bookstoreservice.model.Book;
-import com.yaudong.assignment.bookstoreservice.model.BookQuantityView;
+import com.yaudong.assignment.bookstoreservice.dto.book.BookQuantityView;
 import com.yaudong.assignment.bookstoreservice.repository.BookRepository;
-import com.yaudong.assignment.bookstoreservice.utils.reportgenerator.CsvReportGenerator;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.yaudong.assignment.bookstoreservice.model;
+package com.yaudong.assignment.bookstoreservice.dto.book;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

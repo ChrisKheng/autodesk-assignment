@@ -1,7 +1,7 @@
 package com.yaudong.assignment.bookstoreservice.repository;
 
 import com.yaudong.assignment.bookstoreservice.model.Book;
-import com.yaudong.assignment.bookstoreservice.model.BookQuantityView;
+import com.yaudong.assignment.bookstoreservice.dto.book.BookQuantityView;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

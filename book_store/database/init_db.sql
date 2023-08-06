@@ -1,5 +1,7 @@
 USE book_store_db;
 
+INSERT INTO employee_role (name) VALUES('ADMIN');
+
 INSERT INTO book_inventory (title, publisher, author, isbn, price, quantity) VALUES ('Rust and Bone (De rouille et d''os)', 'Kertzmann, Rutherford and Tromp', 'Glynis Kettle', '951702132-1', 99.21, 5);
 INSERT INTO book_inventory (title, publisher, author, isbn, price, quantity) VALUES ('Strangers, The', 'Stanton-Carroll', 'Sam Bohan', '965450695-5', 99.83, 8);
 INSERT INTO book_inventory (title, publisher, author, isbn, price, quantity) VALUES ('Our Sunhi', 'Wisozk Inc', 'Alastair Fehner', '591847987-2', 100.09, 4);
