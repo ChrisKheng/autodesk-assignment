@@ -1,4 +1,7 @@
 # README
+## Reports
+Please find the answer to the SQL assignment and report for the Java microservice application in the `reports` directory.
+
 ## Steps to set up the application
 1. Install the necessary tools:
 * MySQL 8.0.33
