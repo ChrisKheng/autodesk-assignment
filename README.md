@@ -38,4 +38,4 @@ java -jar target/bookstore-service-0.0.1-SNAPSHOT.jar
 * Sign in using the created user through the `http://localhost:8080/employees/auth/signin` endpoint.
 * Get all the books in the db through the `http://localhost:8080/books` endpoint.
 * You can use [PostMan](https://www.postman.com/downloads) to make it easier to test the endpoints.
-* Please refer to the report of this java program for all the endpoints.
+* Please refer to the report of this java program for the usage of all the endpoints.
