@@ -1,5 +1,6 @@
 package com.yaudong.assignment.bookstoreservice.controller;
 
+import com.yaudong.assignment.bookstoreservice.dto.book.BookListFilterCriteria;
 import com.yaudong.assignment.bookstoreservice.model.Book;
 import com.yaudong.assignment.bookstoreservice.dto.book.BookQuantityView;
 import com.yaudong.assignment.bookstoreservice.service.BookService;
@@ -25,13 +26,20 @@ public class BookController {
     @Autowired
     private XmlReportGenerator xmlGenerator;
 
+    @GetMapping
+    public List<Book> getBooks(BookListFilterCriteria filterCriteria) {
+        System.out.println(filterCriteria);
+        return bookService.getBooksByCriteria(filterCriteria);
+    }
+
     // TODO: Verify the price is a valid price
-    @PostMapping("")
+    // Verify if all fields are present
+    @PostMapping
     public void addBooks(@RequestBody List<Book> books) {
         bookService.addBooks(books);
     }
 
-    @DeleteMapping("")
+    @DeleteMapping
     public void deleteBooks(@RequestParam(value = "id", defaultValue = "") List<Long> ids) {
         bookService.deleteBooks(ids);
     }
@@ -41,14 +49,10 @@ public class BookController {
         return bookService.retrieveQuantity(ids);
     }
 
+    // TODO: Reject -ve quantity
     @PostMapping("/quantity")
     public void updateBooksQuantity(@RequestBody Map<Long, Integer> bookQuantities) {
         bookService.updateQuantity(bookQuantities);
-    }
-
-    @GetMapping("/")
-    public List<Book> getBooks() {
-        return bookService.getBooks();
     }
 
     @GetMapping("/report/csv")
